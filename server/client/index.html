@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI FitTrack</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI FitTrack</h1>
+
+    <p class="subtitle">
+        Personal Fitness Management System
+    </p>
+
+
+    <!-- ========================= -->
+    <!-- REGISTER -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <h2>Register</h2>
+
+        <input
+            type="text"
+            id="registerName"
+            placeholder="Enter your name"
+        >
+
+        <input
+            type="email"
+            id="registerEmail"
+            placeholder="Enter your email"
+        >
+
+        <input
+            type="password"
+            id="registerPassword"
+            placeholder="Enter your password"
+        >
+
+        <button onclick="registerUser()">
+            Register
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- LOGIN -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <h2>Login</h2>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter your email"
+        >
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password"
+        >
+
+        <button onclick="loginUser()">
+            Login
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- DASHBOARD -->
+    <!-- ========================= -->
+
+    <div class="dashboard-section">
+
+        <h2>Dashboard</h2>
+
+        <button onclick="getDashboard()">
+            View Dashboard
+        </button>
+
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+
+                <h3>Total Workouts</h3>
+
+                <p id="totalWorkouts">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Calories Burned</h3>
+
+                <p id="totalCalories">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Total Foods</h3>
+
+                <p id="totalFoods">
+                    0
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- LATEST PROGRESS -->
+        <!-- ========================= -->
+
+        <div class="progress-box">
+
+            <h2>Latest Progress</h2>
+
+            <p>
+
+                <strong>
+                    Weight:
+                </strong>
+
+                <span id="weight">
+                    N/A
+                </span>
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    Height:
+                </strong>
+
+                <span id="height">
+                    N/A
+                </span>
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    BMI:
+                </strong>
+
+                <span id="bmi">
+                    N/A
+                </span>
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    BMI Category:
+                </strong>
+
+                <span id="bmiCategory">
+                    N/A
+                </span>
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    BMI Recommendation:
+                </strong>
+
+                <span id="bmiRecommendation">
+                    No recommendation available.
+                </span>
+
+            </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- AI RECOMMENDATION -->
+        <!-- ========================= -->
+
+        <div class="recommendation-box">
+
+            <h2>
+                AI Recommendation
+            </h2>
+
+            <p id="recommendation">
+
+                No recommendation available.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- ADD PROGRESS -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <h2>
+            📊 Add Progress
+        </h2>
+
+
+        <input
+            type="number"
+            id="progressWeight"
+            placeholder="Weight (kg)"
+            step="0.1"
+        >
+
+
+        <input
+            type="number"
+            id="progressHeight"
+            placeholder="Height (cm)"
+            step="0.1"
+        >
+
+
+        <input
+            type="number"
+            id="progressBMI"
+            placeholder="BMI"
+            step="0.01"
+            readonly
+        >
+
+
+        <input
+            type="date"
+            id="progressDate"
+        >
+
+
+        <button onclick="addProgress()">
+            Add Progress
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- PROGRESS HISTORY -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <h2>
+            📈 Progress History
+        </h2>
+
+
+        <button onclick="getProgress()">
+            Show Progress
+        </button>
+
+
+        <div id="progressList">
+
+            <p>
+                Click "Show Progress" to view your progress.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- ADD WORKOUT -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <h2>
+            🏋️ Add Workout
+        </h2>
+
+
+        <input
+            type="text"
+            id="workoutName"
+            placeholder="Workout Name"
+        >
+
+
+        <input
+            type="text"
+            id="workoutCategory"
+            placeholder="Category"
+        >
+
+
+        <input
+            type="number"
+            id="workoutDuration"
+            placeholder="Duration (minutes)"
+        >
+
+
+        <input
+            type="number"
+            id="workoutCalories"
+            placeholder="Calories Burned"
+        >
+
+
+        <input
+            type="date"
+            id="workoutDate"
+        >
+
+
+        <button onclick="addWorkout()">
+            Add Workout
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- WORKOUT LIST -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <h2>
+            🏋️ My Workouts
+        </h2>
+
+
+        <input
+            type="text"
+            id="searchWorkout"
+            placeholder="Search workout..."
+        >
+
+
+        <button onclick="searchWorkouts()">
+            Search
+        </button>
+
+
+        <button onclick="getWorkouts()">
+            Show All Workouts
+        </button>
+
+
+        <div id="workoutList">
+
+            <p>
+                Click "Show All Workouts" to view your workouts.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- ADD FOOD -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <h2>
+            🍎 Add Food
+        </h2>
+
+
+        <input
+            type="text"
+            id="foodName"
+            placeholder="Food Name"
+        >
+
+
+        <input
+            type="number"
+            id="foodCalories"
+            placeholder="Calories"
+        >
+
+
+        <input
+            type="number"
+            id="foodProtein"
+            placeholder="Protein (g)"
+        >
+
+
+        <input
+            type="number"
+            id="foodCarbohydrates"
+            placeholder="Carbohydrates (g)"
+        >
+
+
+        <input
+            type="number"
+            id="foodFats"
+            placeholder="Fats (g)"
+        >
+
+
+        <input
+            type="text"
+            id="foodServingSize"
+            placeholder="Serving Size"
+        >
+
+
+        <button onclick="addFood()">
+            Add Food
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- FOOD LIST -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <h2>
+            🍽️ Food List
+        </h2>
+
+
+        <input
+            type="text"
+            id="searchFood"
+            placeholder="Search food..."
+        >
+
+
+        <button onclick="searchFoods()">
+            Search
+        </button>
+
+
+        <button onclick="getFoods()">
+            Show All Foods
+        </button>
+
+
+        <div id="foodList">
+
+            <p>
+                Click "Show All Foods" to view foods.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- API TEST -->
+    <!-- ========================= -->
+
+    <div class="form-box">
+
+        <button onclick="checkAPI()">
+            Check API
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- RESULT -->
+    <!-- ========================= -->
+
+    <div id="result"></div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
