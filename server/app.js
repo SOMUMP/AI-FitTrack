@@ -76,6 +76,14 @@ app.use("/api/admin", adminRoutes);
 console.log("Admin routes mounted successfully");
 
 // ===============================
+// Document Routes
+// ===============================
+const documentRoutes = require("./routes/documentRoutes");
+app.use("/api/documents", documentRoutes);
+
+console.log("Document routes mounted successfully");
+
+// ===============================
 // Home Route
 // ===============================
 app.get("/", (req, res) => {

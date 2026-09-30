@@ -4,6 +4,10 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY
 });
 
+
+// =====================================================
+// FITNESS RECOMMENDATION
+// =====================================================
 const generateFitnessRecommendation = async ({
   workoutName,
   category,
@@ -37,6 +41,48 @@ Do not make medical diagnoses.
   return response.text;
 };
 
+
+// =====================================================
+// AI CHAT
+// =====================================================
+const generateAIChatResponse = async (message) => {
+  const prompt = `
+You are the AI assistant inside the AI FitTrack fitness application.
+
+Your job is to help users with:
+- Workouts
+- Exercise
+- Fitness
+- Calories
+- Healthy lifestyle
+- Recovery
+- Basic nutrition
+- Fitness goals
+
+User message:
+${message}
+
+Instructions:
+1. Give a clear and beginner-friendly answer.
+2. Keep the answer practical.
+3. Do not make medical diagnoses.
+4. Do not claim to replace a doctor or healthcare professional.
+5. If the question is unrelated to fitness, politely say that you mainly help with fitness and healthy lifestyle topics.
+`;
+
+  const response = await ai.models.generateContent({
+    model: "gemini-3.8-flash",
+    contents: prompt
+  });
+
+  return response.text;
+};
+
+
+// =====================================================
+// EXPORT
+// =====================================================
 module.exports = {
-  generateFitnessRecommendation
+  generateFitnessRecommendation,
+  generateAIChatResponse
 };
