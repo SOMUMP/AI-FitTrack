@@ -31,6 +31,11 @@ const workoutSchema = new mongoose.Schema(
     workoutDate: {
       type: Date,
       required: true
+    },
+
+    embedding: {
+      type: [Number],
+      default: []
     }
   },
   {
